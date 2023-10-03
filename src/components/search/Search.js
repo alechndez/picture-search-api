@@ -11,7 +11,7 @@ import ImageResults from '../image-results/ImageResults'
 class Search extends Component {
   state = {
       searchText: '',
-      amount: '',
+      amount: 15,
       apiUrl: 'https://pixabay.com/api',
       apiKey: '39761536-349269e67928bac9adf3ad6f2',
       images: []
@@ -64,14 +64,16 @@ class Search extends Component {
           label="Amount"
           onChange={this.onAmountChange}
         >
+          <MenuItem value={5}>Five</MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={15}>Fifteen</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={50}>Fifty</MenuItem>
         </Select>
       </FormControl>
     </Box>
     <br/>
-    {this.state.images.length >0 ? (<ImageResults images={this.state.images}/>) : null}
+    {this.state.images.length > 0 ? (<ImageResults images={this.state.images}/>) : null}
       </div>
     )
   }
