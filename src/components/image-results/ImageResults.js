@@ -13,9 +13,10 @@ class ImageResults extends Component {
     const {images} = this.props
     if(images){
       imageListContent= (
-      <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+      <ImageList
+       sx={{ width: '100%', height: 'auto' }} cols={4} rowHeight={164}>
         {images.map(img => (
-          <ImageListItem key={img.id}>
+          <ImageListItem title={img.tags} key={img.id}>
             <img src={img.largeImageURL} alt=""/>
           </ImageListItem>
         ))}

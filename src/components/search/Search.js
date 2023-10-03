@@ -17,25 +17,31 @@ class Search extends Component {
       images: []
   }
   onTextChange = (e) => {
+    const val = e.target.value
     const { apiUrl, apiKey, searchText, amount } = this.state;
-    this.setState({[e.target.name]: e.target.value});
-    axios({
-      method: 'get',
-      url: apiUrl,
-      params: {
-        key: apiKey,
-        q: searchText,
-        image_type: 'photo',
-        per_page: amount,
-        safesearch: true,
-      },
-    })
-      .then((res) => {
-        this.setState({ images: res.data.hits });
+    this.setState({[e.target.name]: val});
+    if(val ===''){
+      this.setState({images:[]})
+    }else{
+      axios({
+        method: 'get',
+        url: apiUrl,
+        params: {
+          key: apiKey,
+          q: searchText,
+          image_type: 'photo',
+          per_page: amount,
+          safesearch: true,
+        },
       })
-      .catch((err) => {
-        console.error(err);
-      });
+        .then((res) => {
+          this.setState({ images: res.data.hits });
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+    
   };  
   onAmountChange = (e) => {
     this.setState({ amount: e.target.value });
